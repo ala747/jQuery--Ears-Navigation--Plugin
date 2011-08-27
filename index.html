@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ears Navigation Example</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-earsnav.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#navigation').earsnav({textTransform: 'lowercase'});
+});
+</script>
+</head>
+<body>
+<div id="navigation">
+	<a href="http://www.google.com/" id="prev">A pretty nice search engine</a>
+	<a href="http://www.100px.com/" id="next">An almost forgotten website. Shame on me!</a>
+</div>
+</body>
+</html>
