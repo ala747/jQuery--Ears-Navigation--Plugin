@@ -130,7 +130,7 @@
 				$wrapper.css({
 					'-moz-box-shadow': '0 2px 6px rgba(50, 50, 50, .5)',
 					'-webkit-box-shadow': '0 2px 6px rgba(50, 50, 50, .5)',
-					'box-shadow': '0 2px 6px rgba(50, 50, 50, .5)',
+					'box-shadow': '0 2px 6px rgba(50, 50, 50, .5)'
 				});
 
 			// Side Specific Styles
