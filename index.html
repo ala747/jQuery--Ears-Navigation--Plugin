@@ -37,9 +37,9 @@
 
     <div class="download">
       <a href="http://github.com/ala747/jQuery--Ears-Navigation--Plugin/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
+        <img width="90" src="http://github.com/images/modules/download/zip.png" alt="Download ZIP" style="border:0"></a>
       <a href="http://github.com/ala747/jQuery--Ears-Navigation--Plugin/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
+        <img width="90" src="http://github.com/images/modules/download/tar.png" alt="Download TAR" style="border:0"></a>
     </div>
 
     <h1><a href="http://github.com/ala747/jQuery--Ears-Navigation--Plugin">jQuery Ears Navigation Plugin</a>
@@ -51,24 +51,103 @@
 
     <h2>Dependencies</h2>
 <p>jQuery (tested on 1.6.2 so far)</p>
+<h2>Supported Browsers</h2>
+
+<ul>
+<li>Firefox 3.5+</li>
+<li>Safari 4 and 5+</li>
+<li>Google Chrome 4+</li>
+
+<li>IE 8+ (IE 7 works fine too &mdash; if you don't mind to have no pointers at all :P &mdash;)</li>
+</ul><h2>Demo and Documentation</h2>
+<p><strong>Hey, ma! Look at this page sides :)</strong></p>
+<p>There is no extensive doc at the moment, sorry. But... here we go with a quickstart tip and a quick variables' overview :)</p>
+
+<pre><code>$(document).ready(function () {
+    $('#navigation').earsnav(); // that should do the (basic) trick
+});
+</code></pre>
+
+<p>However, there are some things to have in mind to get the previous tip working: your prev/next links should have id attributes named "prev" and "next" respectively, otherwise you should pass the proper element id to the plugin to make it work. I.e.:</p>
+
+<pre><code>$(document).ready(function () {
+    $('#navigation').earsnav({
+    	prevEl: '#my-custom-prev-link',
+    	nextEl: '#my-custom-next-link'
+    });
+});
+</code></pre>
+
+<p>Of course, you can customize a bunch of things playing with the plugin settings. Here are the defaults:</p>
+
+<ul>
+<li>
+<strong>wrapperCSS</strong> (<em>array</em>, default: {})</li>
+<li>
+<strong>pointerSize</strong> (<em>number</em>, default: 14)</li>
+
+<li>
+<strong>textTransform</strong> (<em>string</em>, default: 'none')</li>
+<li>
+<strong>opacity</strong> (<em>number</em>, default: .8)</li>
+<li>
+<strong>backgroundColor</strong> (<em>string</em>, default: '#234')</li>
+
+<li>
+<strong>fontColor</strong> (<em>string</em>, default: '#eee')</li>
+<li>
+<strong>fontFamily</strong> (<em>string</em>, default: 'Arial, Helvetica, sans-serif')</li>
+<li>
+<strong>fontSize</strong> (<em>string</em>, default: '18px')</li>
+
+<li>
+<strong>letterSpacing</strong> (<em>string</em>, default: '-1px')</li>
+<li>
+<strong>prevEl</strong> (<em>string</em>, default: '#prev')</li>
+<li>
+<strong>nextEl</strong> (<em>string</em>, default: '#next')</li>
+
+<li>
+<strong>minWidth</strong> (<em>number</em>, default: 50)</li>
+<li>
+<strong>maxWidth</strong> (<em>number</em>, default: 250)</li>
+<li>
+<strong>container</strong> (<em>string</em>, default: 'body')</li>
+
+<li>
+<strong>titlePrev</strong> (<em>string</em>, default: 'Older')</li>
+<li>
+<strong>titleNext</strong> (<em>string</em>, default: 'Newer')</li>
+<li>
+<strong>shadow</strong> (<em>boolean</em>, default: true)</li>
+
+<li>
+<strong>borderRadius</strong> (<em>number</em>, default: 5)</li>
+<li>
+<strong>slideText</strong> (<em>boolean</em>, default: true)</li>
+<li>
+<strong>type</strong> (<em>string</em>, default: null)</li>
+</ul>
+
 <h2>License</h2>
 <p>GNU General Public License (GPL) Version 2</p>
 <h2>Authors</h2>
-<p>@ala_747 (http://twitter.com/#!/ala_747/)<br/><br/>      </p>
+<p>Nicolás Fantino (<a href="http://twitter.com/#%21/ala_747/">@ala_747</a>)</p>
 <h2>Contact</h2>
-<p>Nicolás Fantino (nfanti@hotmail.com)<br/>      </p>
+<p>Nicolás Fantino (nfanti&#64;hotmail&#46;com)
+<br/>      </p>
 
 
     <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="http://github.com/ala747/jQuery--Ears-Navigation--Plugin/zipball/master">zip</a> or
-      <a href="http://github.com/ala747/jQuery--Ears-Navigation--Plugin/tarball/master">tar</a> formats.
+    <p id="downloads">
+      Look at those nice "ears" on the page sides!
+      <a href="http://github.com/ala747/jQuery--Ears-Navigation--Plugin/zipball/master" id="zip">Download the plugin in zip format</a>
+      <a href="http://github.com/ala747/jQuery--Ears-Navigation--Plugin/tarball/master" id="tar">Download the plugin in tar format</a>
     </p>
     <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
+      by running:</p>
       <pre>$ git clone git://github.com/ala747/jQuery--Ears-Navigation--Plugin</pre>
-    </p>
+    
 
     <div class="footer">
       get the source code on GitHub : <a href="http://github.com/ala747/jQuery--Ears-Navigation--Plugin">ala747/jQuery--Ears-Navigation--Plugin</a>
@@ -76,6 +155,21 @@
 
   </div>
 
-  
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://raw.github.com/ala747/jQuery--Ears-Navigation--Plugin/master/js/jquery-earsnav.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#downloads').earsnav({
+		prevEl: '#zip',
+		nextEl: '#tar',
+		backgroundColor: '#def',
+		fontColor: '#666',
+		borderRadius: 10,
+		pointerSize: 8,
+		titlePrev: 'ZIP',
+		titleNext: 'TAR'
+	});
+});
+</script>
 </body>
 </html>
