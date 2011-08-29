@@ -67,7 +67,7 @@
 				lineHeight: '1',
 				overflow: 'visible',
 				'zoom': 1,
-				zIndex: 10000
+				zIndex: 100
 			};
 
 			var pointerStyle = {
@@ -76,13 +76,17 @@
 				borderColor: ((side == 'right')?'transparent transparent transparent '+ settings.backgroundColor:'transparent '+ settings.backgroundColor +' transparent transparent'),
 				display: 'block',
 				position: 'fixed',
-				'zoom': 1
+				'zoom': 1,
+				zIndex: 101
 			};
 
-			var defaultTitleStyle = {};
+			var defaultTitleStyle = {
+				cursor: 'pointer'
+			};
 
 			var articleTitleStyle = {
-				position: 'absolute'
+				position: 'absolute',
+				cursor: 'pointer'
 			};
 
 			// Elements
@@ -153,6 +157,20 @@
 				top : $(window).height() / 2 - $($wrapper).outerHeight(true) / 2
 			});
 
+			// IE Workarounds
+			if($.browser.msie){
+				$wrapper.css({
+					zIndex: 'inherit'
+				})
+				$pointer.css({
+					opacity: settings.opacity,
+					top : $(window).height() / 2 - $($pointer).outerHeight(true) / 2
+				});
+				$articleTitle.css({
+					top: $($wrapper).outerHeight(true) / 2
+				});
+			}
+
 			$defaultTitle.appendTo($wrapper);
 			$articleTitle.appendTo($wrapper);
 			$wrapper.appendTo(settings.container);
@@ -176,16 +194,15 @@
 		function onHover() {
 			$(this).children('.earsnav-default-title').animate({
 				opacity: 'hide'
-			},
-			100,
-			function() {
+			}, 100, function() {
+				if($.browser.msie)
+					$(this).parent().children('strong').animate({
+						opacity: 1
+					}, 75);
 				$(this).parent().animate({
 					opacity: 1,
 					width: settings.maxWidth
-				},
-				75,
-				function() {
-					
+				}, 75, function() {
 					$(this).children('.earsnav-article-title').animate({opacity: 'show'}, 100);
 					$(this).children('.earsnav-article-title').css({
 						marginTop: -($($(this).children('.earsnav-article-title')).outerHeight() / 2)
@@ -197,15 +214,15 @@
 		function onOut() {
 			$(this).children('.earsnav-article-title').animate({
 				opacity: 'hide'
-			},
-			100,
-			function() {
+			}, 100, function() {
+				if($.browser.msie)
+					$(this).parent().children('strong').animate({
+						opacity: settings.opacity
+					}, 75);
 				$(this).parent().animate({
 					opacity: settings.opacity,
 					width: settings.minWidth
-				},
-				75,
-				function() {
+				}, 75, function() {
 					$(this).children('.earsnav-default-title').animate({opacity: 'show'}, 100);
 				});
 			});
