@@ -7,8 +7,7 @@ jQuery Ears Navigations is a quick and dirty plugin which can transform your Pre
 - Firefox 3.5+
 - Safari 4 and 5+
 - Google Chrome 4+
-
-IE 7+ partially works at this time (with some positioning problems; although it's not a high priority issue for me right now, I hope to have it fixed soon)
+- IE 8+ (IE 7 works fine --if you don't mind to have no pointers at all--)
 
 ## Demo and Documentation
 
