@@ -187,10 +187,12 @@
 				$(document).bind('scroll', function () {
 					if($pointer)
 						$pointer.css({
-							top : $(window).height() / 2 + $(window).scrollTop() - $($pointer).outerHeight(true) / 2
+							position: 'absolute',
+							top : $(window).height() / 2 + $(window).scrollTop() - $($pointer).outerHeight(true) / 2 + 44
 						});
 					$wrapper.css({
-						top : $(window).height() / 2 + $(window).scrollTop() - $($wrapper).outerHeight(true) / 2
+						position: 'absolute',
+						top : $(window).height() / 2 + $(window).scrollTop() - $($wrapper).outerHeight(true) / 2 + 44
 					});
 				});
 			else
