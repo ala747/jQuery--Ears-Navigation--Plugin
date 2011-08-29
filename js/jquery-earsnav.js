@@ -176,18 +176,33 @@
 			$wrapper.appendTo(settings.container);
 
 			$('.earsnav-article-title').hide();
-			$($wrapper).hover(onHover, onOut);
+			if(isMobileSafari() == true){
+				$($wrapper).click(onHover).mouseout(onOut);
+			} else {
+				$($wrapper).hover(onHover, onOut);
+			}
 
-			// Is anybody resizing the browser window?? Let's repositionate stuff ASAP
-			$(window).bind('resize', function () {
-				if($pointer)
-					$pointer.css({
-						top : $(window).height() / 2 - $($pointer).outerHeight(true) / 2
+			// Is anybody resizing (or scrolling in iOs) the browser window?? Let's repositionate stuff ASAP
+			if(isMobileSafari() == true)
+				$(document).bind('scroll', function () {
+					if($pointer)
+						$pointer.css({
+							top : $(window).height() / 2 + $(window).scrollTop() - $($pointer).outerHeight(true) / 2
+						});
+					$wrapper.css({
+						top : $(window).height() / 2 + $(window).scrollTop() - $($wrapper).outerHeight(true) / 2
 					});
-				$wrapper.css({
-					top : $(window).height() / 2 - $($wrapper).outerHeight(true) / 2
 				});
-			});
+			else
+				$(window).bind('resize', function () {
+					if($pointer)
+						$pointer.css({
+							top : $(window).height() / 2 - $($pointer).outerHeight(true) / 2
+						});
+					$wrapper.css({
+						top : $(window).height() / 2 - $($wrapper).outerHeight(true) / 2
+					});
+				});
 		}
 
 		// Effects
@@ -207,6 +222,9 @@
 					$(this).children('.earsnav-article-title').css({
 						marginTop: -($($(this).children('.earsnav-article-title')).outerHeight() / 2)
 					});
+					if(isMobileSafari() == true)
+						$(this).bind('click', mSafariGo);
+						
 				});
 			});
 			return false;
@@ -224,9 +242,19 @@
 					width: settings.minWidth
 				}, 75, function() {
 					$(this).children('.earsnav-default-title').animate({opacity: 'show'}, 100);
+					if(isMobileSafari() == true)
+						$(this).unbind('click', mSafariGo);
 				});
 			});
 			return false;
+		}
+
+		// Mobile Safari Detection
+		function isMobileSafari() {
+			return ((navigator.userAgent.toLowerCase().match(/(iphone|ipod|ipad)/) != null)? true: false);
+		}
+		function mSafariGo() {
+			window.location = $(this).attr('href');
 		}
 	}
 })(jQuery);
