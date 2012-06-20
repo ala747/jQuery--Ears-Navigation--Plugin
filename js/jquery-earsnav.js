@@ -77,16 +77,19 @@
 				display: 'block',
 				position: 'fixed',
 				'zoom': 1,
+				opacity: 1,
 				zIndex: 101
 			};
 
 			var defaultTitleStyle = {
-				cursor: 'pointer'
+				cursor: 'pointer',
+				'zoom': 1
 			};
 
 			var articleTitleStyle = {
 				position: 'absolute',
-				cursor: 'pointer'
+				cursor: 'pointer',
+				'zoom': 1
 			};
 
 			// Elements
@@ -163,7 +166,6 @@
 					zIndex: 'inherit'
 				})
 				$pointer.css({
-					opacity: settings.opacity,
 					top : $(window).height() / 2 - $($pointer).outerHeight(true) / 2
 				});
 				$articleTitle.css({
@@ -208,17 +210,14 @@
 		// Effects
 		function onHover() {
 			$(this).children('.earsnav-default-title').animate({
-				opacity: 'hide'
-			}, 100, function() {
-				if($.browser.msie)
-					$(this).parent().children('strong').animate({
-						opacity: 1
-					}, 75);
+				opacity: 'toggle'
+			}, 10, function() {
 				$(this).parent().animate({
 					opacity: 1,
 					width: settings.maxWidth
 				}, 75, function() {
-					$(this).children('.earsnav-article-title').animate({opacity: 'show'}, 100);
+				    $(this).children('.earsnav-default-title').hide(); // just to be sure... for now
+					$(this).children('.earsnav-article-title').animate({opacity: 'toggle'}, 100);
 					$(this).children('.earsnav-article-title').css({
 						marginTop: -($($(this).children('.earsnav-article-title')).outerHeight() / 2)
 					});
@@ -231,17 +230,14 @@
 		}
 		function onOut() {
 			$(this).children('.earsnav-article-title').animate({
-				opacity: 'hide'
-			}, 100, function() {
-				if($.browser.msie)
-					$(this).parent().children('strong').animate({
-						opacity: settings.opacity
-					}, 75);
+				opacity: 'toggle'
+			}, 10, function() {
 				$(this).parent().animate({
 					opacity: settings.opacity,
 					width: settings.minWidth
 				}, 75, function() {
-					$(this).children('.earsnav-default-title').animate({opacity: 'show'}, 100);
+				    $(this).children('.earsnav-article-title').hide(); // just to be sure... for now
+					$(this).children('.earsnav-default-title').animate({opacity: 'toggle'}, 100);
 					if(isMobileSafari() == true)
 						$(this).unbind('click', mSafariGo);
 				});
